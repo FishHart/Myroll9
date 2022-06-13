@@ -11,6 +11,11 @@
     </head>
 
     <body>
+        {% if user.is_authenticated %}
+            ログインしている場合に表示される
+        {% else %}
+            未ログインの場合に表示される
+        {% endif %}
         <hr>
         <div class="subject-list">
             {% for i in for_range10 %}
