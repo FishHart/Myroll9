@@ -9,10 +9,10 @@ from django.views.generic import TemplateView
 # def myroll(request):
 #     for_range10 = [i for i in range(10)]
 
-#     return render(request, 'myroll/index.html', {'for_range10': for_range10})
+#     return render(request, 'myroll/top.html', {'for_range10': for_range10})
 
 class myroll(TemplateView):
-    template_name = 'myroll/index.html'
+    template_name = 'myroll/top.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

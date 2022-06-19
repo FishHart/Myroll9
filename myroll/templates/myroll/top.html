@@ -13,6 +13,11 @@
     <body>
         {% if user.is_authenticated %}
             ログインしている場合に表示される
+
+
+            <li><a href="{% url 'account:home' %}">ほげほげページへのリンク</a></li>
+
+
         {% else %}
             未ログインの場合に表示される
         {% endif %}
