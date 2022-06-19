@@ -19,7 +19,8 @@ from myroll import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('myroll.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('signup/', views.signup, name='default_signup'),
+    path('main', include('myroll.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')),
+    # path('signup/', views.signup, name='default_signup'),
+    path('accounts/', include('home.urls')),
 ]
