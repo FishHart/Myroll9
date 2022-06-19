@@ -3,11 +3,25 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-@login_required
-def myroll(request):
-    for_range10 = [i for i in range(10)]
+from django.views.generic import TemplateView
 
-    return render(request, 'myroll/index.html', {'for_range10': for_range10})
+# @login_required
+# def myroll(request):
+#     for_range10 = [i for i in range(10)]
+
+#     return render(request, 'myroll/index.html', {'for_range10': for_range10})
+
+class myroll(TemplateView):
+    template_name = 'myroll/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        for_range10 = [i for i in range(10)]
+        context['for_range10'] = for_range10
+        return context
+
+# index = myroll.as_view()
+
 
 
 # def signup(request):

@@ -3,4 +3,4 @@ from django.views import generic
 
 '''トップページ'''
 class TempView(generic.TemplateView):
-    template_name = 'account/top.html'
+    template_name = 'account/base.html'
