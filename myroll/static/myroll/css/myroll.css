@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     height: 30vh;
-    background-color: rgba(200, 200, 200, 1);
+    background-color: rgba(230, 230, 230, 1);
 }
 
 .user_name {
@@ -21,12 +21,25 @@
     top: 0vh;
     right: 0vw;
 }
-#all {
-    /* position: relative;
-    top: 10vh; */
+#all, #absence {
+    display: inline-block;
+    padding: 0.3em 1em;
+    text-decoration: none;
+    color: #67c5ff;
+    border: solid 2px #67c5ff;
+    border-radius: 3px;
+    transition: .4s;
 }
-#absence {
+#all:hover, #absence:hover{
+    background: #67c5ff;
+    color: white;
+}
 
+#warning {
+    position: absolute;
+    top: 10vh;
+    left: 35vw;
+    font-size: 7vh;
 }
 
 
@@ -47,6 +60,7 @@ div.subject-list {
 }
 
 div.subject {
+    position: relative;
     height: 30vh;
     width: 25vw;
 
@@ -54,6 +68,26 @@ div.subject {
     background-color: gray;
     color: white;
 }
-a {
-    text-decoration: none;
+
+.star {
+    position: absolute;
+    font-size: 5vh;
+    /* height: 7vh;
+    width: 7vh; */
 }
+.icon {
+    position: absolute;
+    top: 7vh;
+    left: 2vw;
+    height: 17vh;
+    width: 12vw;
+}
+.attendance {
+    position: absolute;
+    top: 15vh;
+    left: 15vw;
+    font-size: 5vh;
+}
+/* a {
+    text-decoration: none;
+} */

@@ -18,7 +18,7 @@
                 <button type="button" id="all">全て</button>
                 <button type="button" id="absence">欠席した科目</button>
             </div>
-            欠席数が多い科目
+            <div id="warning">欠席数が多い科目</div>
         </div>
 
         {% comment %} {% if user.is_authenticated %}
@@ -36,9 +36,9 @@
             {% for i in for_range10 %}
                 <a href="{% url 'account:home' %}">
                     <div class="subject">
-                        iconbutton
-                        <img src="{% static 'myroll/images/wanage.png' %}" alt="wanage">
-                        Attendance
+                        <div class="star">⭐️</div>
+                        <img class="icon" src="{% static 'myroll/images/wanage.png' %}" alt="wanage">
+                        <div class="attendance">17/20</div>
                     </div>
                 </a>
             {% endfor %}
