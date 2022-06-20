@@ -5,13 +5,23 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static 'css/myroll.css' %}">
+        <link rel="stylesheet" href="{% static 'myroll/css/myroll.css' %}">
+        <link src="{% static 'myroll/images/wanage.png' %}">
         
         <title>Myroll</title>
     </head>
 
     <body>
-        {% if user.is_authenticated %}
+        <div id="header">
+            <span class="user_name">user: CreativeProduction</span>
+            <div id="head_button">
+                <button type="button" id="all">全て</button>
+                <button type="button" id="absence">欠席した科目</button>
+            </div>
+            欠席数が多い科目
+        </div>
+
+        {% comment %} {% if user.is_authenticated %}
             ログインしている場合に表示される
 
 
@@ -20,11 +30,17 @@
 
         {% else %}
             未ログインの場合に表示される
-        {% endif %}
-        <hr>
+        {% endif %} {% endcomment %}
+
         <div class="subject-list">
             {% for i in for_range10 %}
-                <a href="{% url 'account:home' %}"><div class="subject">aiu</div></a>
+                <a href="{% url 'account:home' %}">
+                    <div class="subject">
+                        iconbutton
+                        <img src="{% static 'myroll/images/wanage.png' %}" alt="wanage">
+                        Attendance
+                    </div>
+                </a>
             {% endfor %}
         </div>
     </body>
