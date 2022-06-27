@@ -23,6 +23,12 @@ class myroll(TemplateView):
 # index = myroll.as_view()
 
 
+class subjectView(TemplateView):
+    template_name = 'myroll/subject.html'
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
+
 
 # def signup(request):
 #     if request.method == 'POST':
