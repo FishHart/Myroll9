@@ -18,6 +18,7 @@ class myroll(TemplateView):
         context = super().get_context_data(**kwargs)
         for_range10 = [i for i in range(10)]
         context['for_range10'] = for_range10
+        context['subjects'] = [["国語", "あ"], ["数学", "い"], ["理科", "う"], ["社会", "う"], ["英語", "お"]]
         return context
 
 # index = myroll.as_view()

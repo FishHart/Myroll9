@@ -12,14 +12,14 @@
     </head>
 
     <body>
-        <div id="header">
+        {% comment %} <div id="header">
             <span class="user_name">user: CreativeProduction</span>
             <div id="head_button">
                 <button type="button" id="all">全て</button>
                 <button type="button" id="absence">欠席した科目</button>
             </div>
             <div id="warning">欠席数が多い科目</div>
-        </div>
+        </div> {% endcomment %}
 
         {% comment %} {% if user.is_authenticated %}
             ログインしている場合に表示される
@@ -32,7 +32,7 @@
             未ログインの場合に表示される
         {% endif %} {% endcomment %}
 
-        <div class="subject-list">
+        {% comment %} <div class="subject-list">
             {% for i in for_range10 %}
                 <a href="{% url 'myroll:subject' %}">
                     <div class="subject">
@@ -42,6 +42,35 @@
                     </div>
                 </a>
             {% endfor %}
+        </div> {% endcomment %}
+
+        <div class="subject-list">
+            {% for i in subjects %}
+                <a href="{% url 'myroll:subject' %}">
+                    <div class="subject">
+                        <p>{{ i.0 }}</p>
+                        <p>{{ i.1 }}</p>
+                    </div>
+                </a>
+            {% endfor %}
         </div>
+
+        {% comment %} モーダルウィンドウ {% endcomment %}
+        <button id="modalOpen" class="button">Click Me</button>
+        <div id="easyModal" class="modal">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1>教科名 アイコン</h1>
+                <span class="modalClose">×</span>
+            </div>
+            <div class="modal-body">
+                <div id="unit">単位数:2</div>
+                <div id="subject">授業数</div>
+                <div>現在: 3回目</div>
+            </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="{% static 'myroll/js/subject.js' %}"></script>
     </body>
 </html>
