@@ -1,3 +1,4 @@
+const body = document.querySelector('html body');
 const buttonOpen = document.getElementById('modalOpen');
 const modal = document.getElementById('easyModal');
 const buttonClose = document.getElementsByClassName('modalClose')[0];
@@ -6,12 +7,14 @@ const buttonClose = document.getElementsByClassName('modalClose')[0];
 buttonOpen.addEventListener('click', modalOpen);
 function modalOpen() {
   modal.style.display = 'block';
+  body.style.backgroundColor = 'black';
 }
 
 // バツ印がクリックされた時
 buttonClose.addEventListener('click', modalClose);
 function modalClose() {
   modal.style.display = 'none';
+  body.style.backgroundColor = 'white';
 }
 
 // モーダルコンテンツ以外がクリックされた時
