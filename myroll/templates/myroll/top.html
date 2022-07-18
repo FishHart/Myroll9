@@ -12,14 +12,14 @@
     </head>
 
     <body>
-        {% comment %} <div id="header">
+        <div id="header">
             <span class="user_name">user: CreativeProduction</span>
             <div id="head_button">
                 <button type="button" id="all">全て</button>
                 <button type="button" id="absence">欠席した科目</button>
             </div>
             <div id="warning">欠席数が多い科目</div>
-        </div> {% endcomment %}
+        </div>
 
         {% comment %} {% if user.is_authenticated %}
             ログインしている場合に表示される
@@ -46,17 +46,20 @@
 
         <div class="subject-list">
             {% for i in subjects %}
-                <a href="{% url 'myroll:subject' %}">
-                    <div class="subject">
-                        <p>{{ i.0 }}</p>
+                {% comment %} <a href="{% url 'myroll:subject' %}"> {% endcomment %}           
+                <div class="subject">
+                    {% comment %} このままにするか、ボタンとpを同階層にするか {% endcomment %}
+                    <button class="button">
+                        <p class="subjectName">{{ i.0 }}</p>
                         <p>{{ i.1 }}</p>
-                    </div>
-                </a>
+                    </button>
+                </div> 
+                {% comment %} </a> {% endcomment %}
             {% endfor %}
         </div>
 
         {% comment %} モーダルウィンドウ {% endcomment %}
-        <button id="modalOpen" class="button">Click Me</button>
+        {% comment %} <button id="modalOpen" class="button">Click Me</button> {% endcomment %}
         <div id="easyModal" class="modal">
             <div class="modal-content">
             <div class="modal-header">
