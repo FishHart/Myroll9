@@ -1,0 +1,35 @@
+
+hr {
+    position: absolute;
+    top: 20vh;
+    left: 0;
+    width: 100vw;
+}
+
+div.subject-list {
+    height: 100vh;
+    width: 79vw;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+
+    position: absolute;
+    top: 25vh;
+    left: 10.5vw;
+}
+
+div.subject {
+    height: 20vh;
+    width: 20vw;
+
+    /* position: absolute;
+    top: 25vh;
+    left: 10vw; */
+
+    border-radius: 10px 10px 10px 10px;
+    background-color: green;
+    color: red;
+}
