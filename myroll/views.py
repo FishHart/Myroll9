@@ -31,6 +31,14 @@ class subjectView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
+
+class scheduleView(TemplateView):
+    template_name = 'myroll/schedule.html'
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
+
+
 # def signup(request):
 #     if request.method == 'POST':
 #         form = UserCreationForm(request.POST)
