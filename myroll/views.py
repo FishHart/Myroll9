@@ -1,7 +1,7 @@
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth import login, authenticate
+# from django.contrib.auth.forms import UserCreationForm
+# from django.shortcuts import render, redirect
+# from django.contrib.auth.decorators import login_required
 
 from django.views.generic import TemplateView
 
@@ -32,6 +32,7 @@ class subjectView(TemplateView):
 
 
 
+# @管理者だけ
 class scheduleView(TemplateView):
     template_name = 'myroll/schedule.html'
 
