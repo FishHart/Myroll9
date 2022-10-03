@@ -6,7 +6,7 @@
 # ]
 
 """myrollのURL定義"""
-from .urls import path
+from django.urls import path
 from .apps import MyrollConfig
 from . import views as myrollView
 
