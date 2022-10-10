@@ -9,7 +9,7 @@
 # ]
 
 """accountのURL定義"""
-from django.urls import path
+from .urls import path
 from .apps import AccountConfig
 from . import views
 
