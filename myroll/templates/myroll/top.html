@@ -1,0 +1,79 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'myroll/css/myroll.css' %}">
+        <link src="{% static 'myroll/images/wanage.png' %}">
+        
+        <title>Myroll</title>
+    </head>
+
+    <body>
+        <div id="header">
+            <span class="user_name">user: CreativeProduction</span>
+            <div id="head_button">
+                <button type="button" id="all">全て</button>
+                <button type="button" id="absence">欠席した科目</button>
+            </div>
+            <div id="warning">欠席数が多い科目</div>
+        </div>
+
+        {% comment %} {% if user.is_authenticated %}
+            ログインしている場合に表示される
+
+
+            <li><a href="{% url 'account:home' %}">ほげほげページへのリンク</a></li>
+
+
+        {% else %}
+            未ログインの場合に表示される
+        {% endif %} {% endcomment %}
+
+        {% comment %} <div class="subject-list">
+            {% for i in for_range10 %}
+                <a href="{% url 'myroll:subject' %}">
+                    <div class="subject">
+                        <div class="star">⭐️</div>
+                        <img class="icon" src="{% static 'myroll/images/wanage.png' %}" alt="wanage">
+                        <div class="attendance">17/20</div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div> {% endcomment %}
+
+        <div class="subject-list">
+            {% for i in subjects %}
+                {% comment %} <a href="{% url 'myroll:subject' %}"> {% endcomment %}           
+                <div class="subject">
+                    {% comment %} このままにするか、ボタンとpを同階層にするか {% endcomment %}
+                    <button class="button">
+                        <p class="subjectName">{{ i.0 }}</p>
+                        <p>{{ i.1 }}</p>
+                    </button>
+                </div> 
+                {% comment %} </a> {% endcomment %}
+            {% endfor %}
+        </div>
+
+        {% comment %} モーダルウィンドウ {% endcomment %}
+        {% comment %} <button id="modalOpen" class="button">Click Me</button> {% endcomment %}
+        <div id="easyModal" class="modal">
+            <div class="modal-content">
+            <div class="modal-header">
+                <p id="subName">教科名 アイコン</p>
+                <span class="modalClose">×</span>
+            </div>
+            <div class="modal-body">
+                <p id="unit">単位数:2</p>
+                <p id="subject">授業数</p>
+                <p id="attendance">現在: 3回目</p>
+            </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="{% static 'myroll/js/subject.js' %}"></script>
+    </body>
+</html>
