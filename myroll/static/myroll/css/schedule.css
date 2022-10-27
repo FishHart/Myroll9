@@ -1,0 +1,40 @@
+#header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5vh;
+    background-color: #7098cc;
+}
+
+.user_name {
+    position: relative;
+    top: 0vh;
+    left: 1vw;
+    font-size: 3vh;
+    color: #fff;
+}
+
+#head_button {
+    position: absolute;
+    width: 6vw;
+    top: 0.8vh;
+    left: 13vw;
+    border: solid 2px #fff;/*線*/
+    border-radius: 2px;/*角の丸み*/
+    text-align: center;
+    color: #fff;
+}
+#head_button:hover {
+    background-color: #fff;
+    color: #7098cc;
+}
+
+table {
+    margin: auto;
+    margin-top: 7vh;
+}
+
+#dayOfWeek {
+    width: 10vw;
+}
