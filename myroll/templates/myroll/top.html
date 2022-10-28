@@ -6,19 +6,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'myroll/css/myroll.css' %}">
-        <link src="{% static 'myroll/images/wanage.png' %}">
         
         <title>Myroll</title>
     </head>
 
     <body>
         <div id="header">
-            <span class="user_name">user: CreativeProduction</span>
-            <div id="head_button">
-                <button type="button" id="all">全て</button>
-                <button type="button" id="absence">欠席した科目</button>
-            </div>
-            <div id="warning">欠席数が多い科目</div>
+            <span class="user_name" style="text-decoration:none;">{{ user.username }}</span>
+            {% comment %} <button type="button" id="all">全て</button>
+            <button type="button" id="absence">欠席した科目</button> {% endcomment %}
+            <a id="schedule" href="{% url 'myroll:schedule' %}" style="text-decoration:none;">
+                <div id="head_button">日程</div>
+            </a>
+            <div id="warning">危険な科目：{{ warning }}</div>
         </div>
 
         {% comment %} {% if user.is_authenticated %}
@@ -49,10 +49,14 @@
                 {% comment %} <a href="{% url 'myroll:subject' %}"> {% endcomment %}           
                 <div class="subject">
                     {% comment %} このままにするか、ボタンとpを同階層にするか {% endcomment %}
-                    <button class="button">
+                    {% comment %} <button class="button"> {% endcomment %}
                         <p class="subjectName">{{ i.0 }}</p>
-                        <p>{{ i.1 }}</p>
-                    </button>
+                        <div class="cnts">
+                            <p class="yourCount">出席回数：{{ yourCount }}</p>
+                            <p class="count">現在回数：{{ i.1 }}</p>
+                            <p class="total">総合回数：{{ i.2 }}</p>
+                        </div>
+                    {% comment %} </button> {% endcomment %}
                 </div> 
                 {% comment %} </a> {% endcomment %}
             {% endfor %}
@@ -60,7 +64,7 @@
 
         {% comment %} モーダルウィンドウ {% endcomment %}
         {% comment %} <button id="modalOpen" class="button">Click Me</button> {% endcomment %}
-        <div id="easyModal" class="modal">
+        {% comment %} <div id="easyModal" class="modal">
             <div class="modal-content">
             <div class="modal-header">
                 <p id="subName">教科名 アイコン</p>
@@ -74,6 +78,6 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="{% static 'myroll/js/subject.js' %}"></script>
+        <script type="text/javascript" src="{% static 'myroll/js/subject.js' %}"></script> {% endcomment %}
     </body>
 </html>

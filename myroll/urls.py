@@ -13,6 +13,6 @@ from . import views as myrollView
 app_name = MyrollConfig.name # myrollが入る
 urlpatterns = [
     path('', myrollView.myroll.as_view(), name='main'),
-    path('subject/', myrollView.subjectView.as_view(), name='subject'),
+    path('subject', myrollView.subjectView.as_view(), name='subject'),
     path('schedule', myrollView.scheduleView.as_view(), name='schedule'),
 ]

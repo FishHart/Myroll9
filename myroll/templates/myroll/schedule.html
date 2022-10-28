@@ -2,16 +2,52 @@
 
 <!doctype html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static 'myroll/css/subject.css' %}">
-        <link src="{% static 'myroll/images/wanage.png' %}">
-        
-        <title>Schedule</title>
-    </head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="{% static 'myroll/css/schedule.css' %}">
+		
+		<title>Schedule</title>
+	</head>
 
-    <body>
-        
-    </body>
+	<body>
+		<div id="header">
+			<span class="user_name" style="text-decoration:none;">{{ user.username }}</span>
+			<a id="schedule" href="{% url 'myroll:main' %}" style="text-decoration:none;">
+					<div id="head_button">科目一覧</div>
+			</a>
+		</div>
+
+
+		<table width="90%" height="700" border="1" bordercolor="blue" cellspacing="0">
+			<tr height="100" bgcolor="pink">
+				<th class="sunday" colspan="4" width="12%">日</th>
+				<td></td><td></td><td></td><td></td>
+			</tr>
+			<tr height="100">
+				<th class="dayOfWeek" colspan="4" width="18%">月</th>
+				<td>{{ subject }}</td><td>授業</td><td>授業</td><td>授業</td>
+			</tr>
+			<tr height="100">
+				<th class="dayOfWeek" colspan="4" width="18%">火</th>
+				<td>授業</td><td>授業</td><td>授業</td><td>授業</td>
+			</tr>
+			<tr height="100">
+				<th class="dayOfWeek" colspan="4" width="18%">水</th>
+				<td>授業</td><td>授業</td><td>授業</td><td>授業</td>
+			</tr>
+			<tr height="100">
+				<th class="dayOfWeek" colspan="4" width="18%">木</th>
+				<td>授業</td><td>授業</td><td>授業</td><td>授業</td>
+			</tr>
+			<tr height="100">
+				<th class="dayOfWeek" colspan="4" width="18%">金</th>
+				<td>授業</td><td>授業</td><td>授業</td><td>授業</td>
+			</tr>
+			<tr height="100" bgcolor="skyblue">
+				<th class="saturday" colspan="4" width="12%">土</th>
+				<td></td><td></td><td></td><td></td>
+			</tr>
+		</table>
+	</body>
 </html>
