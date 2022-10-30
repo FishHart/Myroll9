@@ -1,3 +1,7 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+
 {% load static %}
 
 <!doctype html>
@@ -11,14 +15,6 @@
 	</head>
 
 	<body>
-		<div id="header">
-			<span class="user_name" style="text-decoration:none;">{{ user.username }}</span>
-			<a id="schedule" href="{% url 'myroll:main' %}" style="text-decoration:none;">
-					<div id="head_button">科目一覧</div>
-			</a>
-		</div>
-
-
 		<table width="90%" height="700" border="1" bordercolor="blue" cellspacing="0">
 			<tr height="100" bgcolor="pink">
 				<th class="sunday" colspan="4" width="12%">日</th>
@@ -51,3 +47,5 @@
 		</table>
 	</body>
 </html>
+
+{% endblock %}
