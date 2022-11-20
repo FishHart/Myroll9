@@ -3,37 +3,14 @@
 from multiprocessing import context
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, DetailView
-from .models import Attending, Subject
-
-# @login_required
-# def myroll(request):
-#     for_range10 = [i for i in range(10)]
-
-#     return render(request, 'myroll/top.html', {'for_range10': for_range10})
-
-# class OnlyYouMixin(UserPassesTestMixin):
-#     raise_exception = True
-
-#     def test_func(self):
-#         # 今ログインしてるユーザーのpkと、そのマイページのpkが同じなら許可
-#         user = self.request.user
-#         return user.pk == self.kwargs['pk']
-
-# class myroll(OnlyYouMixin, DetailView):
-#     model = User
-#     template_name = 'myroll/top.html'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         for_range10 = [i for i in range(10)]
-#         context['for_range10'] = for_range10
-#         context['subjects'] = [["国語", "あ"], ["数学", "い"], ["理科", "う"], ["社会", "う"], ["英語", "お"]]
-#         return context
-
+from .models import Sbj, Tmt, Atd
+from account.models import User
+from .program import ser, create
 
 # ログインしたユーザだけ
 class myroll(TemplateView, LoginRequiredMixin):
     template_name = 'myroll/top.html'
+    # create.create()
 
     def get_context_data(self, **kwargs):
         user = self.request.user
@@ -44,19 +21,28 @@ class myroll(TemplateView, LoginRequiredMixin):
         for_range10 = [i for i in range(10)]
         context['for_range10'] = for_range10
 
-        context['yourCount'] = 1
+        # atend = Atd.objects.get(std_id = user.std_id)
+        sbj_list = Sbj.objects.filter(std_fac=(user.std_fac or "ALL"), std_grd=user.std_grd)
+        list = [["", 0, 0]]
+        #  = [["数学ⅡA", 5, 16], ["数学ⅡB", 5, 16], ["体育", 5, 16], ["創造製作", 4, 16]]
+        now_count = Atd.objects.filter(std_id=user.std_id)
+        for sbj in sbj_list:
+            for count in now_count:
+                if sbj.sbj_name == count.sbj_name:
+                    list.append([sbj.sbj_name, count.atd_time, sbj.curr_cnt, sbj.total_cnt])
+                    break
 
-        atend = Attending.objects.get(userpk = user.pk)
-        sub = Subject.objects.get(name = atend.subject)
-        context['subjects'] = [[atend.subject, sub.count, sub.total], [atend.subject, sub.count, sub.total], [atend.subject, sub.count, sub.total]]
-        # context['subjects'] = [["国語", "あ"], ["数学", "い"], ["理科", "う"], ["社会", "う"], ["英語", "お"]]
+        list.remove(["", 0, 0])
+        context['subjects'] = list
 
-        if ((sub.count / sub.total) <= 1):
-            context['warning'] = atend.subject
+        # if ((sub.count / sub.total) <= 1):
+        #     context['warning'] = atend.subject
+
+        test = Sbj.objects.raw('SELECT * FROM myroll_sbj WHERE std_grd=2')
+        for t in test:
+            context['test'] = t
 
         return context
-
-# index = myroll.as_view() 一旦消しとく
 
 
 class subjectView(TemplateView):
@@ -75,21 +61,19 @@ class scheduleView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         context['user'] = user
-        atend = Attending.objects.get(userpk = user.pk)
-        context['subject'] = atend.subject
+        # atend = Attending.objects.get(userpk = user.pk)
+        context['subject'] = ["歴史", "数学", "体育", "哲学"]
+        # atend.subject
         return context
 
+class receptionView(TemplateView):
+    template_name = 'myroll/reception.html'
 
-# def signup(request):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data.get('username')
-#             raw_password = form.cleaned_data.get('password1')
-#             user = authenticate(username=username, password=raw_password)
-#             login(request, user)
-#             return redirect('myroll')
-#     else:
-#         form = UserCreationForm()
-#     return render(request, 'registration/signup.html', {'form': form})
+    def get_context_data(self, **kwargs):
+        # ser.
+        context = super().get_context_data(**kwargs)
+        context["result"] = "success"
+        return context
+
+    def post(self, **kwargs):
+        self.request

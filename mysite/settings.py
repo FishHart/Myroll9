@@ -133,3 +133,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'myroll:main'
 LOGIN_URL = 'accounts:login'
 # LOGOUT_REDIRECT_URL = 'accounts:login'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
