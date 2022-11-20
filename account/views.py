@@ -27,6 +27,8 @@ class MySignupView(CreateView):
     def form_valid(self, form):
         result = super().form_valid(form)
         user = self.object
+        # ユーザーの登録と同時に現在の出席回数を生成
+        user.create_atdtime()
         login(self.request, user)
         return result
 

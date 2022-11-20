@@ -1,8 +1,13 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+
 {% load static %}
 <!doctype html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'account/css/signup.css' %}">
     <title>ユーザー登録</title>
 </head>
 <body>
@@ -14,3 +19,5 @@
     </form>
 </body>
 </html>
+
+{% endblock %}
