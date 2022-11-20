@@ -1,0 +1,23 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'account/css/signup.css' %}">
+    <title>ユーザー登録</title>
+</head>
+<body>
+    <h1>ユーザー登録</h1>
+    <form action="{% url 'account:signup' %}" method="post">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit" value="登録"></p>
+    </form>
+</body>
+</html>
+
+{% endblock %}

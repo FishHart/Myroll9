@@ -1,0 +1,55 @@
+#header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5vh;
+    background-color: #7098cc;
+    display: flex;
+    align-content: space-around;
+}
+
+.user_name {
+    margin-right: 3vw;
+    position: relative;
+    top: 0vh;
+    left: 2vw;
+    font-size: 3vh;
+    color: #fff;
+}
+
+#sublist_btn, #schedule_btn {
+    margin-right: 1vw;
+    position: relative;
+    width: 6vw;
+    top: 0.7vh;
+    border: solid 2px #fff; /*線*/
+    border-radius: 2px; /*角の丸み*/
+    text-align: center;
+    color: #fff;
+}
+#schedule_btn {
+    /* margin-right: 50vw; */
+    width: 3vw;
+}
+#sublist_btn:hover, #schedule_btn:hover {
+    background-color: #fff;
+    color: #7098cc;
+}
+
+#login, #logout, #signup {
+    position: absolute;
+    right: 1vw;
+    top: 0.5vh;
+    font-size: 2.5vh;
+    color: #fff;
+}
+#login {
+    right: 18vw;
+}
+#logout {
+    right: 10vw;
+}
+#login:hover, #logout:hover, #signup:hover {
+    color: black;
+}

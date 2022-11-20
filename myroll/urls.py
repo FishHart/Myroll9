@@ -15,4 +15,5 @@ urlpatterns = [
     path('', myrollView.myroll.as_view(), name='main'),
     path('subject', myrollView.subjectView.as_view(), name='subject'),
     path('schedule', myrollView.scheduleView.as_view(), name='schedule'),
+    path('reception', myrollView.receptionView.as_view()),
 ]

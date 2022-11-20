@@ -1,14 +1,13 @@
 
-#header {
+#head {
     position: absolute;
-    top: 0;
+    top: 5vh;
     left: 0;
     right: 0;
     height: 30vh;
     background-color: #7098cc;
 }
-
-.user_name {
+/* .user_name {
     position: relative;
     top: 0vh;
     left: 1vw;
@@ -21,15 +20,15 @@
     width: 3vw;
     top: 0.8vh;
     left: 13vw;
-    border: solid 2px #fff;/*線*/
-    border-radius: 2px;/*角の丸み*/
+    border: solid 2px #fff;線
+    border-radius: 2px;角の丸み
     text-align: center;
     color: #fff;
 }
 #head_button:hover {
     background-color: #fff;
     color: #7098cc;
-}
+} */
 /* #all, #absence {
     display: inline-block;
     padding: 0.3em 1em;
@@ -65,7 +64,7 @@ div.subject-list {
     align-content: space-between;
 
     position: absolute;
-    top: 35vh;
+    top: 40vh;
     left: 7.5vw;
     z-index: 1;
 }
@@ -81,6 +80,7 @@ div.subject {
     background: #fff;
     border: solid 3px #6091d3;/*線*/
     border-radius: 10px;/*角の丸み*/
+    white-space: nowrap;
 }
 .subjectName {
     /* position: absolute; */
