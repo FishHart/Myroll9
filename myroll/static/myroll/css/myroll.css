@@ -46,7 +46,7 @@
 #warning {
     position: absolute;
     top: 10vh;
-    left: 35vw;
+    left: 5vw;
     font-size: 7vh;
     color: #fff;
 }
@@ -69,7 +69,7 @@ div.subject-list {
     z-index: 1;
 }
 div.subject {
-    height: 30vh;
+    height: 25vh;
     width: 22.3vw;
     margin-right: 5vw;
     margin-bottom: 5vh;
@@ -85,7 +85,7 @@ div.subject {
 .subjectName {
     /* position: absolute; */
     /* text-align: left; */
-    font-size: 3rem;
+    font-size: 2rem;
     margin-top: 0pt;
 }
 .cnts {
