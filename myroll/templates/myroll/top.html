@@ -20,7 +20,11 @@
             <a id="schedule" href="{% url 'myroll:schedule' %}" style="text-decoration:none;">
                 <div id="head_button">日程</div>
             </a> {% endcomment %}
-            <div id="warning">危険な科目：{{ warning }}</div>
+            <div id="warning">危険な科目：
+                {% for w in warning %}
+                    {{ w }},
+                {% endfor %}
+            </div>
         </div>
 
         {% comment %} {% if user.is_authenticated %}

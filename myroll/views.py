@@ -2,10 +2,13 @@
 # from django.contrib.auth.mixins import UserPassesTestMixin
 from multiprocessing import context
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, View
 from .models import Sbj, Tmt, Atd
 from account.models import User
 from .program import ser, create
+from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 # ログインしたユーザだけ
 class myroll(TemplateView, LoginRequiredMixin):
@@ -23,20 +26,25 @@ class myroll(TemplateView, LoginRequiredMixin):
 
         # atend = Atd.objects.get(std_id = user.std_id)
         sbj_list = Sbj.objects.filter(std_fac=(user.std_fac or "ALL"), std_grd=user.std_grd)
-        list = [["", 0, 0]]
+        sublist = [["", 0, 0]]
+        warning_list = []
         #  = [["数学ⅡA", 5, 16], ["数学ⅡB", 5, 16], ["体育", 5, 16], ["創造製作", 4, 16]]
         now_count = Atd.objects.filter(std_id=user.std_id)
         for sbj in sbj_list:
             for count in now_count:
                 if sbj.sbj_name == count.sbj_name:
-                    list.append([sbj.sbj_name, count.atd_time, sbj.curr_cnt, sbj.total_cnt])
+                    sublist.append([sbj.sbj_name, count.atd_time, sbj.curr_cnt, sbj.total_cnt])
+                    if (sbj.curr_cnt - count.atd_time) >= 3:
+                        warning_list.append(sbj.sbj_name)
                     break
 
-        list.remove(["", 0, 0])
-        context['subjects'] = list
+        sublist.remove(["", 0, 0])
+        context['subjects'] = sublist
+        if len(warning_list) == 0:
+            context['warning'] = ["なし"]
+        else:
+            context['warning'] = warning_list
 
-        # if ((sub.count / sub.total) <= 1):
-        #     context['warning'] = atend.subject
 
         test = Sbj.objects.raw('SELECT * FROM myroll_sbj WHERE std_grd=2')
         for t in test:
@@ -66,14 +74,28 @@ class scheduleView(TemplateView):
         # atend.subject
         return context
 
-class receptionView(TemplateView):
-    template_name = 'myroll/reception.html'
+class receptionView(View):
+    # template_name = 'myroll/reception.html'
 
-    def get_context_data(self, **kwargs):
-        # ser.
-        context = super().get_context_data(**kwargs)
-        context["result"] = "success"
-        return context
+    # def get_context_data(self, **kwargs):
+    #     # ser.
+    #     context = super().get_context_data(**kwargs)
+    #     context["result"] = "success"
+    #     return context
 
-    def post(self, **kwargs):
-        self.request
+    def get(self, request, *args, **kwargs):
+        context = { 'result' : "あい" }
+        return render(request, 'myroll/reception.html', context)
+
+    def post(self, request, *args, **kwargs):
+        atend = Atd.objects.filter(std_id=request.POST['std_id'])
+        for a in atend:
+            time = float(a.atd_time)
+            a.atd_time = time + 1.0
+            a.save()
+
+        return render(request, 'myroll/reception.html')
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(receptionView, self).dispatch(*args, **kwargs)
